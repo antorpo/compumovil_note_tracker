@@ -14,7 +14,7 @@ import {signIn, signUp} from '../../store/actions/userActions';
 import {isDefined, validarCorreo} from '../../utils/functions';
 import {showErrorToast} from '../../utils/toast';
 
-export const LoginScreen = ({register, login}) => {
+const LoginScreen = ({register, login}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 

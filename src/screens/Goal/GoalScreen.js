@@ -2,12 +2,12 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {View, Text} from 'react-native';
 
-const HomeScreen = () => {
+const GoalScreen = () => {
   return (
     <View>
-      <Text>Home Screen Working!</Text>
+      <Text>Goal Screen Working!</Text>
     </View>
   );
 };
 
-export default connect(null, null)(HomeScreen);
+export default connect(null, null)(GoalScreen);
