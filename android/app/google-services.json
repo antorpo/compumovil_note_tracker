@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "782838659833",
+    "project_id": "note-tracker-3e703",
+    "storage_bucket": "note-tracker-3e703.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:782838659833:android:d4302a1e7cbec2aa7d4028",
+        "android_client_info": {
+          "package_name": "com.note_tracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "782838659833-618s71aolblh9hkr7qijm5n5p70tujnb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.note_tracker",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "782838659833-r2deoh3f0tjtnle5agp6234qc2rljafm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5RhDZwCWU-RfmoANjiQdMP2kjzfnLEi4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "782838659833-r2deoh3f0tjtnle5agp6234qc2rljafm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

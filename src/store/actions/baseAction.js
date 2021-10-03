@@ -1,26 +1,29 @@
-import { showAlert } from "../slices/securitySlice";
+import {showLoading} from '../slices/securitySlice';
+import {showErrorToast} from '../../utils/toast';
 
 // Thunk-Function Creator
-export const ejecutarConTry =
-  (thunkFunction) => async (dispatch, getState) => {
+export const ejecutarConTry = thunkFunction => async (dispatch, getState) => {
+  // Mostrar loading
+  dispatch(showLoading(true));
 
-    // Mostrar loading
+  try {
+    await thunkFunction(dispatch, getState);
 
-    try{
-        await thunkFunction(dispatch, getState);
-        // Ocultar loading
-    }catch(err){
+    // Ocultar loading
+    dispatch(showLoading(false));
+  } catch (err) {
+    let message = '';
 
-        dispatch(
-          showAlert({
-            open: true,
-            type: "error",
-            message: "Ha ocurrido un error!",
-          })
-        );
-
+    if (err.code === 'auth/email-already-in-use') {
+      message = 'That email address is already in use!';
+    } else if (err.code === 'auth/invalid-email') {
+      message = 'That email address is invalid!';
+    } else {
+      message = 'An error ocurred';
     }
-  };
 
-
-
+    // Mostrar error y ocultar loading
+    dispatch(showLoading(false));
+    showErrorToast('Error', message);
+  }
+};

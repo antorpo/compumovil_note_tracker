@@ -1,11 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
+import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
-  alert: {
-    open: false,
-    type: "",
-    message: "",
-  },
   loading: false,
   modal: {
     open: true,
@@ -14,14 +9,11 @@ const initialState = {
 };
 
 const securitySlice = createSlice({
-  name: "securityReducer",
+  name: 'securityReducer',
   initialState,
   reducers: {
     showLoading(state, action) {
       state.loading = action.payload;
-    },
-    showAlert(state, action) {
-      state.alert = action.payload;
     },
     showModal(state, action) {
       state.modal = action.payload;
@@ -29,6 +21,6 @@ const securitySlice = createSlice({
   },
 });
 
-export const { showLoading, showAlert, showModal } = securitySlice.actions;
+export const {showLoading, showModal} = securitySlice.actions;
 
 export default securitySlice.reducer;
