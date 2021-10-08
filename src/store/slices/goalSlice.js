@@ -1,23 +1,23 @@
-import { createSlice } from "@reduxjs/toolkit";
+import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
   goals: [],
   goal: {
-    name: "",
-    description: "",
+    name: '',
+    description: '',
     finish_date: null,
-    color: "",
+    color: '',
     completed: false,
     tasks: [
       {
-        name: "",
+        name: '',
       },
     ],
   },
 };
 
 const goalSlice = createSlice({
-  name: "goalReducer",
+  name: 'goalReducer',
   initialState,
   reducers: {
     addGoal(state, action) {
@@ -26,6 +26,6 @@ const goalSlice = createSlice({
   },
 });
 
-export const { addGoal } = goalSlice.actions;
+export const {addGoal} = goalSlice.actions;
 
 export default goalSlice.reducer;

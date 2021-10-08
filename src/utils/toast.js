@@ -53,7 +53,7 @@ export const showSuccessToast = (title, text) => {
     text1: title,
     text2: text,
     position: 'bottom',
-    visibilityTime: 4000,
+    visibilityTime: 3000,
     autoHide: true,
   });
 };
@@ -64,7 +64,7 @@ export const showErrorToast = (title, text) => {
     text1: title,
     text2: text,
     position: 'bottom',
-    visibilityTime: 4000,
+    visibilityTime: 3000,
     autoHide: true,
   });
 };
@@ -75,7 +75,7 @@ export const showInfoToast = (title, text) => {
     text1: title,
     text2: text,
     position: 'bottom',
-    visibilityTime: 4000,
+    visibilityTime: 3000,
     autoHide: true,
   });
 };

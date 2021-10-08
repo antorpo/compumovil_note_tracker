@@ -1,16 +1,16 @@
-import { createSlice } from "@reduxjs/toolkit";
+import {createSlice} from '@reduxjs/toolkit';
 
 const initialState = {
-  note: [],
+  notes: [],
   note: {
-    title: "",
-    body: "",
-    category: "",
+    title: '',
+    body: '',
+    category: '',
   },
 };
 
 const noteSlice = createSlice({
-  name: "noteReducer",
+  name: 'noteReducer',
   initialState,
   reducers: {
     addNote(state, action) {
@@ -19,6 +19,6 @@ const noteSlice = createSlice({
   },
 });
 
-export const { addNote } = noteSlice.actions;
+export const {addNote} = noteSlice.actions;
 
 export default noteSlice.reducer;

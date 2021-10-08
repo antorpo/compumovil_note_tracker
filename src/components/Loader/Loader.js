@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Image, Text} from 'react-native';
+import {View, Image} from 'react-native';
 import {DotsLoader} from 'react-native-indicator';
 import Logo from '../../assets/logotype.png';
 import styles from './styles';
