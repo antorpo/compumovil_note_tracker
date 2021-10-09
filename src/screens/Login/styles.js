@@ -1,4 +1,6 @@
 import {StyleSheet} from 'react-native';
+import {color} from '../../constants/theme';
+import {size} from '../../constants/size';
 
 const styles = StyleSheet.create({
   container: {
@@ -17,14 +19,14 @@ const styles = StyleSheet.create({
     width: '80%',
   },
   input: {
-    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+    backgroundColor: color.blanco,
     paddingHorizontal: 15,
     paddingVertical: 10,
-    borderRadius: 10,
+    borderRadius: size.radius,
     marginTop: 10,
-    borderColor: 'rgba(21, 21, 21, 0.8)',
+    borderColor: color.negro,
     borderWidth: 1,
-    fontSize: 16,
+    fontSize: size.font,
   },
   buttonContainer: {
     marginTop: 30,
@@ -33,27 +35,27 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   button: {
-    backgroundColor: 'rgba(0, 130, 255, 0.8)',
-    borderRadius: 10,
+    backgroundColor: color.azulClaro,
+    borderRadius: size.radius,
     padding: 15,
     marginTop: 5,
     width: '100%',
     alignItems: 'center',
   },
   buttonText: {
-    color: 'rgba(255, 255, 255, 0.8)',
+    color: color.blanco,
     fontWeight: '700',
-    fontSize: 16,
+    fontSize: size.font,
   },
   buttonOutline: {
-    backgroundColor: 'rgba(255, 255, 255, 0.8)',
-    borderColor: 'rgba(0, 130, 255, 0.8)',
+    backgroundColor: color.blanco,
+    borderColor: color.azulClaro,
     borderWidth: 2,
   },
   buttonOutlineText: {
-    color: 'rgba(0, 130, 255, 0.8)',
+    color: color.azulClaro,
     fontWeight: '700',
-    fontSize: 16,
+    fontSize: size.font,
   },
 });
 
