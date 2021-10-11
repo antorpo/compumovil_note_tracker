@@ -10,13 +10,16 @@ import {showLoading} from '../slices/securitySlice';
 
 export const signUp = (email, password) => {
   return ejecutarConTry(async (dispatch, getState) => {
+    dispatch(showLoading(true));
     await registerEmailAndPassword(email, password);
+    dispatch(showLoading(false));
     showSuccessToast('Success', 'Register complete');
   });
 };
 
 export const signIn = (email, password) => {
   return ejecutarConTry(async (dispatch, getState) => {
+    dispatch(showLoading(true));
     const userCredentials = await loginEmailAndPassword(email, password);
 
     // Save the credentials in store and put signIn = true
@@ -26,6 +29,7 @@ export const signIn = (email, password) => {
         id: userCredentials.user.uid,
       }),
     );
+    dispatch(showLoading(false));
     showSuccessToast('Success', `Welcome ${userCredentials.user.email}`);
   });
 };

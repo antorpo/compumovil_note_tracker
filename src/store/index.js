@@ -9,5 +9,7 @@ export const store = configureStore({
     security: securitySlice,
   },
   devTools: true,
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({serializableCheck: false}),
   // devTools: process.env.NODE_ENV !== 'production', (Deshabilitar para produccion)
 });

@@ -4,14 +4,16 @@ import {showErrorToast} from '../../utils/toast';
 // Thunk-Function Creator
 export const ejecutarConTry = thunkFunction => async (dispatch, getState) => {
   // Mostrar loading
-  dispatch(showLoading(true));
+  //dispatch(showLoading(true));
 
   try {
     await thunkFunction(dispatch, getState);
 
     // Ocultar loading
-    dispatch(showLoading(false));
+    //dispatch(showLoading(false));
   } catch (err) {
+    debugger;
+    console.log(err);
     let message = '';
 
     if (err.code === 'auth/email-already-in-use') {

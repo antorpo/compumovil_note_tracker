@@ -4,10 +4,6 @@ export const createNote = async note => {
   await firebase.firestore().collection('notes').add(note);
 };
 
-export const getAllNotesByUser = async user_id => {
-  return null;
-};
-
 export const getNoteByUser = async () => {
   return null;
 };

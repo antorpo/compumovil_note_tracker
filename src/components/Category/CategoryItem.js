@@ -12,7 +12,7 @@ export const CategoryItem = ({
     <TouchableOpacity
       style={[styles.itemContainer, backgroundColor]}
       onPress={onPress}>
-      <Text style={[styles.itemText, textColor]}>{category.title}</Text>
+      <Text style={[styles.itemText, textColor]}>{category.name}</Text>
     </TouchableOpacity>
   );
 };

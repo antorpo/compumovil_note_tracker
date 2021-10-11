@@ -34,11 +34,20 @@ const styles = StyleSheet.create({
   imageContainer: {
     width: '100%',
     padding: size.padding,
-    backgroundColor: 'grey',
   },
   image: {
     width: '100%',
     height: 450,
+  },
+  actionButtonIcon: {
+    fontSize: 20,
+    height: 22,
+    color: 'white',
+  },
+  addButtonContainer: {
+    width: '100%',
+    position: 'absolute',
+    top: size.height * 0.9,
   },
 });
 

@@ -1,13 +1,19 @@
 import React, {useState} from 'react';
-import {View, Text, FlatList} from 'react-native';
+import {View, FlatList} from 'react-native';
 import {CategoryItem} from './CategoryItem';
 
 export const CategoriesList = ({data, onPress}) => {
   const [selectedId, setSelectedId] = useState(null);
 
   const onPressExtended = category => {
-    onPress(category);
-    setSelectedId(category.id);
+    // Toggle state selected or not
+    if (category.id === selectedId) {
+      onPress(null);
+      setSelectedId(null);
+    } else {
+      onPress(category);
+      setSelectedId(category.id);
+    }
   };
 
   const renderItem = ({item}) => {
