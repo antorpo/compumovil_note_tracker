@@ -1,6 +1,6 @@
 import {addNote} from '../slices/noteSlice';
 import {ejecutarConTry} from './baseAction';
-import {getCategories, getNotes} from '../slices/noteSlice';
+import {getCategories, getNotes, selectNote} from '../slices/noteSlice';
 
 export const getCategoriesUser = categories => {
   return ejecutarConTry(async (dispatch, getState) => {
@@ -13,6 +13,12 @@ export const getNotesUser = notes => {
     // Delete timestamp property:
     //notes.forEach(note => delete note.timestamp);
     dispatch(getNotes(notes));
+  });
+};
+
+export const selectNoteUser = note => {
+  return ejecutarConTry(async (dispatch, getState) => {
+    dispatch(selectNote(note));
   });
 };
 

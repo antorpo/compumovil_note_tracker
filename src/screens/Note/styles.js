@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
     fontFamily: fonts.largeTitle,
     fontSize: size.largeTitle,
     fontWeight: '700',
+    marginLeft: 20,
   },
   categoryContainer: {
     marginVertical: 20,
@@ -48,6 +49,9 @@ const styles = StyleSheet.create({
     width: '100%',
     position: 'absolute',
     top: size.height * 0.9,
+  },
+  headerBack: {
+    flexDirection: 'row',
   },
 });
 

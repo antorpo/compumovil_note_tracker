@@ -1,7 +1,14 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {LoginScreen, HomeScreen, NoteScreen, GoalScreen} from '../screens';
+import {
+  LoginScreen,
+  HomeScreen,
+  NoteScreen,
+  GoalScreen,
+  NewNoteScreen,
+  NewGoalScreen,
+} from '../screens';
 import Icon from 'react-native-vector-icons/dist/MaterialIcons';
 
 // https://reactnavigation.org/docs/auth-flow
@@ -18,12 +25,24 @@ const AuthStack = () => {
   );
 };
 
-const AppStack = () => {
+const NoteStack = () => {
   return (
     <Stack.Navigator
-      initialRouteName="Home"
+      initialRouteName="NoteList"
       screenOptions={{headerShown: false}}>
-      <Stack.Screen name={'Home'} component={HomeScreen} />
+      <Stack.Screen name={'NoteList'} component={NoteScreen} />
+      <Stack.Screen name={'NewNote'} component={NewNoteScreen} />
+    </Stack.Navigator>
+  );
+};
+
+const GoalStack = () => {
+  return (
+    <Stack.Navigator
+      initialRouteName="GoalList"
+      screenOptions={{headerShown: false}}>
+      <Stack.Screen name={'GoalList'} component={GoalScreen} />
+      <Stack.Screen name={'NewGoal'} component={NewGoalScreen} />
     </Stack.Navigator>
   );
 };
@@ -52,8 +71,8 @@ const AppTab = () => {
         headerShown: false,
       })}>
       <Tab.Screen name={'Home'} component={HomeScreen} />
-      <Tab.Screen name={'Notes'} component={NoteScreen} />
-      <Tab.Screen name={'Goals'} component={GoalScreen} />
+      <Tab.Screen name={'Notes'} component={NoteStack} />
+      <Tab.Screen name={'Goals'} component={GoalStack} />
     </Tab.Navigator>
   );
 };

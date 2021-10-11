@@ -16,12 +16,15 @@ const noteSlice = createSlice({
     getNotes(state, action) {
       state.notes = action.payload;
     },
+    selectNote(state, action) {
+      state.note = action.payload;
+    },
     addNote(state, action) {
       state.notes.push(action.payload);
     },
   },
 });
 
-export const {getCategories, getNotes, addNote} = noteSlice.actions;
+export const {getCategories, getNotes, addNote, selectNote} = noteSlice.actions;
 
 export default noteSlice.reducer;

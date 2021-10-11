@@ -12,7 +12,11 @@ import {
 import {connect} from 'react-redux';
 import {CategoriesList} from '../../components/Category/CategoriesList';
 import {NotesList} from '../../components/Note/NotesList';
-import {getCategoriesUser, getNotesUser} from '../../store/actions/noteActions';
+import {
+  getCategoriesUser,
+  getNotesUser,
+  selectNoteUser,
+} from '../../store/actions/noteActions';
 import NotCategory from '../../assets/not_category.png';
 import styles from './styles';
 import {firebase} from '../../config/firebase';
@@ -21,7 +25,13 @@ import Icon from 'react-native-vector-icons/dist/MaterialIcons';
 import NoteIcon from '../../assets/check.png';
 import CategoryIcon from '../../assets/category.png';
 
-const NoteScreen = ({getCategories, getNotes, user_id}) => {
+const NoteScreen = ({
+  navigation,
+  getCategories,
+  getNotes,
+  user_id,
+  selectNote,
+}) => {
   const [refreshing, setRefreshing] = useState(false);
   const [category, setCategory] = useState(null);
   const [categories, setCategories] = useState([]);
@@ -92,6 +102,12 @@ const NoteScreen = ({getCategories, getNotes, user_id}) => {
     }
   };
 
+  const handleSelectNote = async note => {
+    await selectNote(note);
+    navigation.navigate('NewNote');
+    console.log('nota seleccionada');
+  };
+
   return (
     <SafeAreaView style={{flex: 1}}>
       <View
@@ -127,7 +143,7 @@ const NoteScreen = ({getCategories, getNotes, user_id}) => {
                 {notes.length === 0 ? (
                   <Text style={styles.sectionSubText}>Not notes</Text>
                 ) : (
-                  <NotesList data={notes} />
+                  <NotesList data={notes} onPress={handleSelectNote} />
                 )}
               </View>
             )}
@@ -182,6 +198,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   getCategories: categories => dispatch(getCategoriesUser(categories)),
   getNotes: notes => dispatch(getNotesUser(notes)),
+  selectNote: note => dispatch(selectNoteUser(note)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NoteScreen);
