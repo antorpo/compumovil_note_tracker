@@ -4,7 +4,7 @@ import {
   View,
   Text,
   ScrollView,
-  Pressable,
+  Alert,
   Image,
   SafeAreaView,
   RefreshControl,
@@ -24,6 +24,7 @@ import {FloatingAction} from 'react-native-floating-action';
 import Icon from 'react-native-vector-icons/dist/MaterialIcons';
 import NoteIcon from '../../assets/check.png';
 import CategoryIcon from '../../assets/category.png';
+import CategoryModal from '../../components/Category/CategoryModal';
 
 const NoteScreen = ({
   navigation,
@@ -36,6 +37,7 @@ const NoteScreen = ({
   const [category, setCategory] = useState(null);
   const [categories, setCategories] = useState([]);
   const [notes, setNotes] = useState([]);
+  const [isModalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
     subscribeCategories();
@@ -72,7 +74,6 @@ const NoteScreen = ({
           const data = doc.data();
           data.id = doc.id;
           data.timestamp = data.timestamp.toDate().toLocaleDateString('en-US');
-
           return data;
         });
 
@@ -104,64 +105,73 @@ const NoteScreen = ({
 
   const handleSelectNote = async note => {
     await selectNote(note);
-    navigation.navigate('NewNote');
-    console.log('nota seleccionada');
+    navigation.navigate('NewNote', {category: category});
+  };
+
+  const handleNewNote = async () => {
+    await selectNote(null);
+    navigation.navigate('NewNote', {category: category});
   };
 
   return (
     <SafeAreaView style={{flex: 1}}>
-      <View
-        style={styles.container}
-        refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-        }>
-        <View style={styles.header}>
-          <Text style={styles.headerText}>Notes</Text>
-        </View>
-
-        <View>
-          <View style={styles.categoryContainer}>
-            <Text style={styles.sectionText}>Categories</Text>
-            {categories.length === 0 ? (
-              <Text style={styles.sectionSubText}>Not categories</Text>
-            ) : (
-              <CategoriesList
-                data={categories}
-                onPress={handleSelectCategory}
-              />
-            )}
+      {isModalVisible ? (
+        <CategoryModal visible={isModalVisible} setVisible={setModalVisible} />
+      ) : (
+        <View
+          style={styles.container}
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }>
+          <View style={styles.header}>
+            <Text style={styles.headerText}>Notes</Text>
           </View>
 
           <View>
-            {!category ? (
-              <View style={styles.imageContainer}>
-                <Image source={NotCategory} style={styles.image} />
-              </View>
-            ) : (
-              <View style={styles.categoryContainer}>
-                <Text style={styles.sectionText}>Notes</Text>
-                {notes.length === 0 ? (
-                  <Text style={styles.sectionSubText}>Not notes</Text>
-                ) : (
-                  <NotesList data={notes} onPress={handleSelectNote} />
-                )}
-              </View>
-            )}
-          </View>
+            <View style={styles.categoryContainer}>
+              <Text style={styles.sectionText}>Categories</Text>
+              {categories.length === 0 ? (
+                <Text style={styles.sectionSubText}>Not categories</Text>
+              ) : (
+                <CategoriesList
+                  data={categories}
+                  onPress={handleSelectCategory}
+                />
+              )}
+            </View>
 
-          <View style={styles.addButtonContainer}>
-            <FloatingAction
-              actions={actionsFiltered(category)}
-              onPressItem={name => {
-                if (name === 'bt_language') {
-                  console.log('melo');
-                }
-                console.log(`selected button: ${name}`);
-              }}
-            />
+            <View>
+              {!category ? (
+                <View style={styles.imageContainer}>
+                  <Image source={NotCategory} style={styles.image} />
+                </View>
+              ) : (
+                <View style={styles.categoryContainer}>
+                  <Text style={styles.sectionText}>Notes</Text>
+                  {notes.length === 0 ? (
+                    <Text style={styles.sectionSubText}>Not notes</Text>
+                  ) : (
+                    <NotesList data={notes} onPress={handleSelectNote} />
+                  )}
+                </View>
+              )}
+            </View>
+
+            <View style={styles.addButtonContainer}>
+              <FloatingAction
+                actions={actionsFiltered(category)}
+                onPressItem={name => {
+                  if (name === 'new_note') {
+                    handleNewNote();
+                  } else if (name === 'new_category') {
+                    setModalVisible(true);
+                  }
+                }}
+              />
+            </View>
           </View>
         </View>
-      </View>
+      )}
     </SafeAreaView>
   );
 };

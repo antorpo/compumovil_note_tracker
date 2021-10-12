@@ -1,13 +1,9 @@
 import {firebase} from '../config/firebase';
 
-export const createCategory = async note => {
-  await firebase.firestore().collection('notes').add(note);
+export const createCategory = async category => {
+  await firebase.firestore().collection('categories').add(category);
 };
 
-export const updateCategory = async note => {
-  return null;
-};
-
-export const deleteCategory = async note_id => {
+export const deleteCategory = async category_id => {
   return null;
 };

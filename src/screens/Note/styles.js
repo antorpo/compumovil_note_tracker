@@ -1,6 +1,7 @@
 import {StyleSheet} from 'react-native';
 import {size} from '../../constants/size';
 import {fonts} from '../../constants/fonts';
+import {color} from '../../constants/theme';
 
 const styles = StyleSheet.create({
   container: {
@@ -52,6 +53,50 @@ const styles = StyleSheet.create({
   },
   headerBack: {
     flexDirection: 'row',
+  },
+  titleContainer: {
+    marginVertical: 20,
+  },
+  titleText: {
+    fontSize: size.mediumTitle,
+    fontWeight: '700',
+  },
+  titleTextSecondary: {
+    fontSize: size.littleTitle,
+    fontWeight: '700',
+    color: '#97befc',
+  },
+  titleStyle: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  input: {
+    backgroundColor: color.grisClaro,
+    fontSize: size.font,
+    borderRadius: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    marginTop: 10,
+  },
+  editorConfig: {
+    backgroundColor: color.grisClaro,
+  },
+  editorStyle: {
+    borderRadius: 10,
+  },
+  newNoteButtonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
+  newNoteButton: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 20,
+    backgroundColor: '#97befc',
+    width: '25%',
+    padding: 20,
+    borderRadius: 10,
   },
 });
 

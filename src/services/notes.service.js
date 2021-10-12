@@ -1,21 +1,24 @@
 import {firebase} from '../config/firebase';
 
 export const createNote = async note => {
-  await firebase.firestore().collection('notes').add(note);
-};
+  const noteObj = {
+    ...note,
+    timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+  };
 
-export const getNoteByUser = async () => {
-  return null;
+  await firebase.firestore().collection('notes').add(noteObj);
 };
 
 export const updateNote = async note => {
-  return null;
+  console.log('dataUpdate', note);
+  const noteObj = {
+    ...note,
+    timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+  };
+
+  await firebase.firestore().collection('notes').doc(note.id).update(noteObj);
 };
 
 export const deleteNote = async note_id => {
-  return null;
-};
-
-export const deleteAllNotes = async () => {
-  return null;
+  await firebase.firestore().collection('notes').doc(note_id).delete();
 };
