@@ -7,18 +7,35 @@ import {
   Pressable,
   SafeAreaView,
   RefreshControl,
+  Alert,
 } from 'react-native';
 import {BarChart, LineChart} from 'react-native-chart-kit';
 import Icon from 'react-native-vector-icons/dist/MaterialIcons';
+import {signOut} from '../../store/actions/userActions';
 import styles from './styles';
 
-const HomeScreen = () => {
+const HomeScreen = ({userEmail, signOutUser}) => {
   const [refreshing, setRefreshing] = useState(false);
 
   const onRefresh = useCallback(() => {
     setRefreshing(true);
     setTimeout(() => setRefreshing(false), 5000);
   }, []);
+
+  const handleSignOut = async () => {
+    Alert.alert('Confirm', 'Are you sure?', [
+      {
+        text: 'Cancel',
+        style: 'cancel',
+      },
+      {
+        text: 'OK',
+        onPress: () => {
+          signOutUser();
+        },
+      },
+    ]);
+  };
 
   return (
     <SafeAreaView style={{flex: 1}}>
@@ -29,9 +46,14 @@ const HomeScreen = () => {
         }>
         <View style={styles.header}>
           <Text style={styles.headerText}>Dashboard</Text>
-          <Pressable>
+          <Pressable onPress={handleSignOut}>
             <Icon name="logout" size={32} />
           </Pressable>
+        </View>
+
+        <View style={styles.userContainer}>
+          <Icon name="person" size={25} />
+          <Text style={styles.userText}>{userEmail}</Text>
         </View>
 
         <View>
@@ -155,4 +177,12 @@ const lineChartConfig = {
   decimalPlaces: 0,
 };
 
-export default connect(null, null)(HomeScreen);
+const mapStateToProps = state => ({
+  userEmail: state.user.email,
+});
+
+const mapDispatchToProps = dispatch => ({
+  signOutUser: () => dispatch(signOut()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);

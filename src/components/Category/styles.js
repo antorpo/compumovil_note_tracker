@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
   },
   saveIcon: {
     marginTop: 15,
-    backgroundColor: color.grisOscuro,
+    backgroundColor: '#97befc',
     borderRadius: size.radius,
     paddingVertical: 5,
     paddingHorizontal: 20,

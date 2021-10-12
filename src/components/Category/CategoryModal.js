@@ -44,7 +44,7 @@ const CategoryModal = ({visible, setVisible, addNewCategory}) => {
                 onChangeText={value => setName(value)}
               />
               <TouchableOpacity onPress={addCategory} style={styles.saveIcon}>
-                <Icon name="save" size={32} />
+                <Icon name="save" size={32} color="white" />
               </TouchableOpacity>
             </View>
           </View>

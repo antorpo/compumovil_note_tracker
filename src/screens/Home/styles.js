@@ -69,6 +69,14 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     textAlign: 'left',
   },
+  userContainer: {
+    flexDirection: 'row',
+  },
+  userText: {
+    fontSize: size.font,
+    fontWeight: '700',
+    marginLeft: 10,
+  },
 });
 
 export default styles;
