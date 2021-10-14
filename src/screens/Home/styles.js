@@ -76,6 +76,7 @@ const styles = StyleSheet.create({
     fontSize: size.font,
     fontWeight: '700',
     marginLeft: 10,
+    color: '#bababa',
   },
 });
 

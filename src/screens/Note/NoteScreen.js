@@ -1,14 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useCallback, useEffect} from 'react';
-import {
-  View,
-  Text,
-  ScrollView,
-  Alert,
-  Image,
-  SafeAreaView,
-  RefreshControl,
-} from 'react-native';
+import {View, Text, Image, SafeAreaView, RefreshControl} from 'react-native';
 import {connect} from 'react-redux';
 import {CategoriesList} from '../../components/Category/CategoriesList';
 import {NotesList} from '../../components/Note/NotesList';
@@ -21,7 +13,6 @@ import NotCategory from '../../assets/not_category.png';
 import styles from './styles';
 import {firebase} from '../../config/firebase';
 import {FloatingAction} from 'react-native-floating-action';
-import Icon from 'react-native-vector-icons/dist/MaterialIcons';
 import NoteIcon from '../../assets/check.png';
 import CategoryIcon from '../../assets/category.png';
 import CategoryModal from '../../components/Category/CategoryModal';

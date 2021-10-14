@@ -12,14 +12,21 @@ const styles = StyleSheet.create({
   header: {
     width: '100%',
     height: 70,
-    flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     justifyContent: 'space-between',
+    marginBottom: 20,
   },
   headerText: {
     fontFamily: fonts.largeTitle,
     fontSize: size.largeTitle,
     fontWeight: '700',
+    marginLeft: 20,
+  },
+  secondaryText: {
+    fontFamily: fonts.mediumTitle,
+    fontSize: size.mediumTitle,
+    fontWeight: '700',
+    color: '#bababa',
   },
   sumaryBar: {
     width: '100%',
@@ -80,6 +87,37 @@ const styles = StyleSheet.create({
     width: '100%',
     position: 'absolute',
     top: size.height * 0.9,
+  },
+  headerBack: {
+    flexDirection: 'row',
+  },
+  titleContainer: {
+    marginVertical: 20,
+    backgroundColor: 'grey',
+  },
+  titleStyle: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  titleText: {
+    fontSize: size.mediumTitle,
+    fontWeight: '700',
+  },
+  titleTextSecondary: {
+    fontSize: size.littleTitle,
+    fontWeight: '700',
+    color: '#97befc',
+  },
+  input: {
+    backgroundColor: color.grisClaro,
+    fontSize: size.font,
+    borderRadius: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    marginTop: 10,
+  },
+  inputDescription: {
+    height: '50%',
   },
 });
 

@@ -3,13 +3,8 @@ import {View, FlatList} from 'react-native';
 import {GoalItem} from './GoalItem';
 
 export const GoalsList = ({data, onPress}) => {
-  const onPressExtended = goal => {
-    // Nothing
-  };
-
   const renderItem = ({item}) => {
-    // Nothing
-    return <GoalItem goal={item} onPress={() => onPressExtended(item)} />;
+    return <GoalItem goal={item} onPress={() => onPress(item)} />;
   };
 
   return (

@@ -17,7 +17,8 @@ import {GoalsList} from '../../components/Goal/GoalsList';
 import {FloatingAction} from 'react-native-floating-action';
 import GoalIcon from '../../assets/goal.png';
 
-const GoalScreen = ({user_id, getGoals}) => {
+const GoalScreen = ({navigation, user_id, getGoals}) => {
+  const [isModalVisible, setModalVisible] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
   const [completed, setCompleted] = useState(false);
   const [goals, setGoals] = useState([]);
@@ -51,6 +52,10 @@ const GoalScreen = ({user_id, getGoals}) => {
         getGoals(goalsList);
         setGoals(goalsList);
       });
+  };
+
+  const handleSelectGoal = async item => {
+    navigation.navigate('EditGoal', {goal: item});
   };
 
   const handleGoals = async completedValue => {
@@ -112,7 +117,7 @@ const GoalScreen = ({user_id, getGoals}) => {
               </View>
             ) : (
               <View style={styles.goalsContainer}>
-                <GoalsList data={goals} />
+                <GoalsList data={goals} onPress={handleSelectGoal} />
               </View>
             )}
           </View>
@@ -121,10 +126,9 @@ const GoalScreen = ({user_id, getGoals}) => {
             <FloatingAction
               actions={actions}
               onPressItem={name => {
-                if (name === 'bt_language') {
-                  console.log('melo');
+                if (name === 'new_goal') {
+                  navigation.navigate('NewGoal');
                 }
-                console.log(`selected button: ${name}`);
               }}
             />
           </View>

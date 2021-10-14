@@ -8,6 +8,7 @@ import {
   GoalScreen,
   NewNoteScreen,
   NewGoalScreen,
+  EditGoalScreen,
 } from '../screens';
 import Icon from 'react-native-vector-icons/dist/MaterialIcons';
 
@@ -43,6 +44,7 @@ const GoalStack = () => {
       screenOptions={{headerShown: false}}>
       <Stack.Screen name={'GoalList'} component={GoalScreen} />
       <Stack.Screen name={'NewGoal'} component={NewGoalScreen} />
+      <Stack.Screen name={'EditGoal'} component={EditGoalScreen} />
     </Stack.Navigator>
   );
 };

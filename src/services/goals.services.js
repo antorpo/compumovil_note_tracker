@@ -1,7 +1,7 @@
 import {firebase} from '../config/firebase';
 
-export const createGoal = async note => {
-  await firebase.firestore().collection('notes').add(note);
+export const createGoal = async goal => {
+  await firebase.firestore().collection('goals').add(goal);
 };
 
 export const getAllGoalsByUser = async user_id => {
