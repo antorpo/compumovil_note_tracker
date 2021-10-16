@@ -1,0 +1,132 @@
+diff --git a/src/components/Goal/GoalItem.js b/src/components/Goal/GoalItem.js
+index 7a9d2f4c14c75d14f94e059ea6fcf889fc6c1810..3fbe57bda156f2fce8020a5e8ef6d8fc9f9e3a8d 100644
+--- a/src/components/Goal/GoalItem.js
++++ b/src/components/Goal/GoalItem.js
+@@ -20,6 +20,8 @@ export const GoalItem = ({onPress, goal}) => {
+     decimalPlaces: 0,
+   };
+ 
++  const randomNumber = () => Math.floor(Math.random()*(101-50+1)+50);
++
+   return (
+     <TouchableOpacity style={[styles.itemContainer]} onPress={onPress}>
+       <View style={styles.itemContent}>
+@@ -34,7 +36,7 @@ export const GoalItem = ({onPress, goal}) => {
+           hideLegend={true}
+         />
+         <Text style={[styles.percentageText, {color: colorChart}]}>
+-          {'90%'}
++          {randomNumber()  + '%'}
+         </Text>
+       </View>
+     </TouchableOpacity>
+diff --git a/src/components/Note/NoteItem.js b/src/components/Note/NoteItem.js
+index 405b84e680dc7de5ee385bb2e30eaf5f36890615..8e02d68e24530fe716aa470e54426817d4ebb6d8 100644
+--- a/src/components/Note/NoteItem.js
++++ b/src/components/Note/NoteItem.js
+@@ -11,7 +11,7 @@ export const NoteItem = ({onPress, note}) => {
+         <Text style={[styles.itemText]}>{note.title}</Text>
+         <View style={styles.dateContainer}>
+           <Icon name="event" size={20} color="#97befc" />
+-          <Text style={[styles.itemText]}>{note.timestamp}</Text>
++          <Text style={[styles.itemText]}>{'14/10/2021'}</Text>
+         </View>
+       </View>
+     </TouchableOpacity>
+diff --git a/src/screens/Note/NoteScreen.js b/src/screens/Note/NoteScreen.js
+index 268cdaf376843769d9746f037e3b4834462e02b6..07b360261a3ec71a1a4b557e34e5d7d40e11095a 100644
+--- a/src/screens/Note/NoteScreen.js
++++ b/src/screens/Note/NoteScreen.js
+@@ -1,9 +1,9 @@
+ /* eslint-disable react-hooks/exhaustive-deps */
+-import React, {useState, useCallback, useEffect} from 'react';
+-import {View, Text, Image, SafeAreaView, RefreshControl} from 'react-native';
+-import {connect} from 'react-redux';
+-import {CategoriesList} from '../../components/Category/CategoriesList';
+-import {NotesList} from '../../components/Note/NotesList';
++import React, { useState, useCallback, useEffect } from 'react';
++import { View, Text, Image, SafeAreaView, RefreshControl } from 'react-native';
++import { connect } from 'react-redux';
++import { CategoriesList } from '../../components/Category/CategoriesList';
++import { NotesList } from '../../components/Note/NotesList';
+ import {
+   getCategoriesUser,
+   getNotesUser,
+@@ -11,8 +11,8 @@ import {
+ } from '../../store/actions/noteActions';
+ import NotCategory from '../../assets/not_category.png';
+ import styles from './styles';
+-import {firebase} from '../../config/firebase';
+-import {FloatingAction} from 'react-native-floating-action';
++import { firebase } from '../../config/firebase';
++import { FloatingAction } from 'react-native-floating-action';
+ import NoteIcon from '../../assets/check.png';
+ import CategoryIcon from '../../assets/category.png';
+ import CategoryModal from '../../components/Category/CategoryModal';
+@@ -62,10 +62,15 @@ const NoteScreen = ({
+       .orderBy('timestamp')
+       .onSnapshot(serverUpdate => {
+         const notesList = serverUpdate.docs.map(doc => {
+-          const data = doc.data();
+-          data.id = doc.id;
+-          data.timestamp = data.timestamp.toDate().toLocaleDateString('en-US');
+-          return data;
++
++          if (doc.data()) {
++            const data = doc.data();
++            data.id = doc.id;
++            data.timestamp 
++            return data;
++          }
++
++
+         });
+ 
+         getNotes(notesList);
+@@ -96,16 +101,16 @@ const NoteScreen = ({
+ 
+   const handleSelectNote = async note => {
+     await selectNote(note);
+-    navigation.navigate('NewNote', {category: category});
++    navigation.navigate('NewNote', { category: category });
+   };
+ 
+   const handleNewNote = async () => {
+     await selectNote(null);
+-    navigation.navigate('NewNote', {category: category});
++    navigation.navigate('NewNote', { category: category });
+   };
+ 
+   return (
+-    <SafeAreaView style={{flex: 1}}>
++    <SafeAreaView style={{ flex: 1 }}>
+       {isModalVisible ? (
+         <CategoryModal visible={isModalVisible} setVisible={setModalVisible} />
+       ) : (
+diff --git a/src/services/goals.services.js b/src/services/goals.services.js
+index 7c862c829e5d588586757ecd7433e8227b1b0425..bbbff648be4c34fc180e74be26db8a53f221a731 100644
+--- a/src/services/goals.services.js
++++ b/src/services/goals.services.js
+@@ -4,22 +4,4 @@ export const createGoal = async goal => {
+   await firebase.firestore().collection('goals').add(goal);
+ };
+ 
+-export const getAllGoalsByUser = async user_id => {
+-  return null;
+-};
+-
+-export const getGoalByUser = async () => {
+-  return null;
+-};
+-
+-export const updateGoal = async note => {
+-  return null;
+-};
+-
+-export const deleteGoal = async note_id => {
+-  return null;
+-};
+ 
+-export const deleteAllGoals = async () => {
+-  return null;
+-};

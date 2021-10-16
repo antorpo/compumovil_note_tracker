@@ -20,6 +20,8 @@ export const GoalItem = ({onPress, goal}) => {
     decimalPlaces: 0,
   };
 
+  const randomNumber = () => Math.floor(Math.random()*(101-50+1)+50);
+
   return (
     <TouchableOpacity style={[styles.itemContainer]} onPress={onPress}>
       <View style={styles.itemContent}>
@@ -34,7 +36,7 @@ export const GoalItem = ({onPress, goal}) => {
           hideLegend={true}
         />
         <Text style={[styles.percentageText, {color: colorChart}]}>
-          {'90%'}
+          {randomNumber()  + '%'}
         </Text>
       </View>
     </TouchableOpacity>

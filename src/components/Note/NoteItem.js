@@ -11,7 +11,7 @@ export const NoteItem = ({onPress, note}) => {
         <Text style={[styles.itemText]}>{note.title}</Text>
         <View style={styles.dateContainer}>
           <Icon name="event" size={20} color="#97befc" />
-          <Text style={[styles.itemText]}>{note.timestamp}</Text>
+          <Text style={[styles.itemText]}>{'14/10/2021'}</Text>
         </View>
       </View>
     </TouchableOpacity>

@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, {useState, useCallback, useEffect} from 'react';
-import {View, Text, Image, SafeAreaView, RefreshControl} from 'react-native';
-import {connect} from 'react-redux';
-import {CategoriesList} from '../../components/Category/CategoriesList';
-import {NotesList} from '../../components/Note/NotesList';
+import React, { useState, useCallback, useEffect } from 'react';
+import { View, Text, Image, SafeAreaView, RefreshControl } from 'react-native';
+import { connect } from 'react-redux';
+import { CategoriesList } from '../../components/Category/CategoriesList';
+import { NotesList } from '../../components/Note/NotesList';
 import {
   getCategoriesUser,
   getNotesUser,
@@ -11,8 +11,8 @@ import {
 } from '../../store/actions/noteActions';
 import NotCategory from '../../assets/not_category.png';
 import styles from './styles';
-import {firebase} from '../../config/firebase';
-import {FloatingAction} from 'react-native-floating-action';
+import { firebase } from '../../config/firebase';
+import { FloatingAction } from 'react-native-floating-action';
 import NoteIcon from '../../assets/check.png';
 import CategoryIcon from '../../assets/category.png';
 import CategoryModal from '../../components/Category/CategoryModal';
@@ -62,10 +62,15 @@ const NoteScreen = ({
       .orderBy('timestamp')
       .onSnapshot(serverUpdate => {
         const notesList = serverUpdate.docs.map(doc => {
-          const data = doc.data();
-          data.id = doc.id;
-          data.timestamp = data.timestamp.toDate().toLocaleDateString('en-US');
-          return data;
+
+          if (doc.data()) {
+            const data = doc.data();
+            data.id = doc.id;
+            data.timestamp 
+            return data;
+          }
+
+
         });
 
         getNotes(notesList);
@@ -96,16 +101,16 @@ const NoteScreen = ({
 
   const handleSelectNote = async note => {
     await selectNote(note);
-    navigation.navigate('NewNote', {category: category});
+    navigation.navigate('NewNote', { category: category });
   };
 
   const handleNewNote = async () => {
     await selectNote(null);
-    navigation.navigate('NewNote', {category: category});
+    navigation.navigate('NewNote', { category: category });
   };
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={{ flex: 1 }}>
       {isModalVisible ? (
         <CategoryModal visible={isModalVisible} setVisible={setModalVisible} />
       ) : (
